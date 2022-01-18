@@ -4,6 +4,11 @@
       "name": "loggin.level.org.springframework",
       "type": "java.lang.String",
       "description": "Description for loggin.level.org.springframework."
+    },
+    {
+      "name": "eureka.client.service-url.default-zone",
+      "type": "java.lang.String",
+      "description": "Description for eureka.client.service-url.default-zone."
     }
   ]
 }
