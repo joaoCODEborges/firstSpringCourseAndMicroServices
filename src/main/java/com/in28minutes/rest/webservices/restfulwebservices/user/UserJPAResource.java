@@ -1,6 +1,5 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -24,10 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class UserJPAResource {
-
-    @Autowired
-    private UserDaoService userDaoService;
-
 
     @Autowired
     private UserRepository userRepository;
@@ -65,7 +60,6 @@ public class UserJPAResource {
         userRepository.deleteById(id);
     }
 
-    //
     // input - details of user
     // output - CREATED & Return the created URI
 
@@ -73,7 +67,7 @@ public class UserJPAResource {
 
     @PostMapping("/jpa/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-        User savedUser = userDaoService.save(user);
+        User savedUser = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -121,9 +115,9 @@ public class UserJPAResource {
         return ResponseEntity.created(location).build();
 
     }
-
+/*
     // relationship of Post, belongs to a User
-    @GetMapping("/jpa/users/{id}/posts")
+    //@GetMapping("/jpa/users/{id}/posts")
     public List<Post> retrieveAllPosts(@PathVariable int id) {
         Optional<User> userOptional = userRepository.findById(id);
 
@@ -133,5 +127,5 @@ public class UserJPAResource {
 
         return userOptional.get().getPosts();
     }
-
+*/
 }
